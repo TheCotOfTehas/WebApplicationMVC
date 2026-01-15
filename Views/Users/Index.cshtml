@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebApplicationMVC.Models.User>
+
+<h2>Все пользователи</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Возраст</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Age</td>
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", "Users", new {id = item.Id}) |
+                    @Html.ActionLink("Удалить", "Delete", "Users", new {id = item.Id})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    @Html.ActionLink("Добавить", "Create", "Users", new {})
+</p>

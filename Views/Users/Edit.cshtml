@@ -1,0 +1,20 @@
+﻿@model WebApplicationMVC.Models.User
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <p>@Html.EditorFor(model => model.Name)</p>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Age)
+            <p>@Html.EditorFor(model => model.Age)</p>
+        </div>
+
+        <p><input type="submit" name="name" value="Сохранить" /></p>
+    }
+</div>

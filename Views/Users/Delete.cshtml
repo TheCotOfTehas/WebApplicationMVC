@@ -1,0 +1,14 @@
+﻿@model WebApplicationMVC.Models.User
+
+<h3>Вы дествительно хотите удалить данного пользователь?</h3>
+
+<div>
+    <h3>Ид: @Html.DisplayFor(u => u.Id)</h3>
+    <p>Пользователь: @Html.DisplayFor(u=>u.Name)</p>
+    <p>Возраст: @Html.DisplayFor(u => u.Age) </p>
+
+    @using (Html.BeginForm())
+    {
+        <input type="submit" value="Удалить">
+    }
+</div>
