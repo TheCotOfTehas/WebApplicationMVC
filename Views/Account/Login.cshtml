@@ -1,0 +1,35 @@
+﻿@model LoginViewModel
+
+<div class="row justify-content-center mt-5" style="margin: 5rem;">
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>🔐 Админ вход</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Login" method="post">
+                    <input type="hidden" name="returnUrl" value="/AdminPanel" />
+
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label"></label>
+                        <input asp-for="UserName" type="text" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                    </div>
+
+                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                    <button type="submit" class="btn btn-primary w-100">🚀 Войти</button>
+                </form>
+
+                <hr class="my-3">
+                <div class="text-center">
+                    <small class="text-muted">admin / User123!</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

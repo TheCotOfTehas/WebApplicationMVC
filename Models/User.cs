@@ -11,6 +11,6 @@ namespace WebApplicationMVC.Models
         public string? Name { get; set; }
         [Required]
         [Range(1, 120)]
-        public int Age { get; set; }
+        public int? Age { get; set; }
     }
 }

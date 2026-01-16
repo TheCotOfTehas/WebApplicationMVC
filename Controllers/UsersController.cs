@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using WebApplicationMVC.EntitiFramework;
 using WebApplicationMVC.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace WebApplicationMVC.Controllers
 {
@@ -19,16 +20,19 @@ namespace WebApplicationMVC.Controllers
         public IActionResult Index()
         {
 
-            return View(db.Users.ToList());
+            return View(db.UsersMy.ToList());
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Create(User user)
         {
             if (!ModelState.IsValid)
@@ -36,14 +40,15 @@ namespace WebApplicationMVC.Controllers
                 return View(user);
             }
 
-            db.Users.Add(user);
+            db.UsersMy.Add(user);
             db.SaveChanges();
             return RedirectToAction("index");
         }
 
+        [Authorize]
         public IActionResult Edit(int id)
         {
-            User user = db.Users.Find(id);
+            User user = db.UsersMy.Find(id);
 
             if (user != null)
             {
@@ -54,6 +59,9 @@ namespace WebApplicationMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+
         public IActionResult Edit(User user)
         {
             if (!ModelState.IsValid)
@@ -67,9 +75,10 @@ namespace WebApplicationMVC.Controllers
             return RedirectToAction("index");
         }
 
+        [Authorize]
         public IActionResult Delete(int id)
         {
-            User user = db.Users.Find(id);
+            User user = db.UsersMy.Find(id);
 
             if (user != null)
             {
@@ -80,9 +89,11 @@ namespace WebApplicationMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(User user)
         {
-            db.Users.Remove(user);
+            db.UsersMy.Remove(user);
             db.SaveChanges();
 
             return RedirectToAction("index");

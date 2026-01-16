@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WebApplicationMVC.Models;
 
 namespace WebApplicationMVC.EntitiFramework
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> UsersMy { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
@@ -13,6 +14,8 @@ namespace WebApplicationMVC.EntitiFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<User>().HasData(
                 new User { Id = 1, Name = "Tom", Age = 37},
                 new User { Id = 2, Name = "Bob", Age = 41 },
