@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using WebApplicationMVC.EntitiFramework;
 using WebApplicationMVC.Models;
+using WebApplicationMVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +44,15 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Users}/{action=Index}/{id?}")
     .WithStaticAssets();
+
+using (var scope = app.Services.CreateScope())
+{
+    var service = scope.ServiceProvider;
+    var userManager = service.GetRequiredService<UserManager<AppUser>>();
+    var roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
+
+    await IdentityDataInitializer.SeedAdminUserAsunc(userManager, roleManager);
+}
 
 
 
