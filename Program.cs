@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using WebApplicationMVC.EntitiFramework;
-using WebApplicationMVC.Models;
+using WebApplicationMVC.EntitiFramework.Entities;
 using WebApplicationMVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);

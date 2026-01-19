@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using WebApplicationMVC.Models;
+using WebApplicationMVC.EntitiFramework.Entities;
 
 namespace WebApplicationMVC.Services
 {

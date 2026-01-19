@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplicationMVC.Models
+namespace WebApplicationMVC.EntitiFramework.Entities
 {
     public class User
     {

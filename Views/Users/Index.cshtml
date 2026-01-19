@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebApplicationMVC.Models.User>
+﻿@using WebApplicationMVC.EntitiFramework.Entities
+@model IEnumerable<User>
 
 <h2>Все пользователи</h2>
 
@@ -24,5 +25,8 @@
     </tbody>
 </table>
 <p>
-    @Html.ActionLink("Добавить", "Edit", "Users", new { })
+    @Html.ActionLink("Добавить", "Create", "Users", new { })
+</p>
+<p>
+    @Html.ActionLink("Зарегистрироваться", "Register", "Users", new { })
 </p>

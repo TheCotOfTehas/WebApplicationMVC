@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using WebApplicationMVC.Models;
+using WebApplicationMVC.EntitiFramework.Entities;
 
 namespace WebApplicationMVC.EntitiFramework
 {
