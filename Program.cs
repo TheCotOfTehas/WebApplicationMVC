@@ -45,6 +45,7 @@ app.MapControllerRoute(
     pattern: "{controller=Users}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+//Это я привязал сервис для создании пользователя и роли admin
 using (var scope = app.Services.CreateScope())
 {
     var service = scope.ServiceProvider;
