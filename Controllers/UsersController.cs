@@ -31,14 +31,14 @@ namespace WebApplicationMVC.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public IActionResult Create(User user)
         {
@@ -53,7 +53,7 @@ namespace WebApplicationMVC.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             User user = db.UsersMy.Find(id);
@@ -67,7 +67,7 @@ namespace WebApplicationMVC.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
 
         public IActionResult Edit(User user)
@@ -83,7 +83,7 @@ namespace WebApplicationMVC.Controllers
             return RedirectToAction("Index", "Users");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             User user = db.UsersMy.Find(id);
@@ -97,7 +97,7 @@ namespace WebApplicationMVC.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(User user)
         {

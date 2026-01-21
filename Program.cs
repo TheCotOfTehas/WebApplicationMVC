@@ -5,8 +5,16 @@ using Microsoft.Extensions.Configuration;
 using WebApplicationMVC.EntitiFramework;
 using WebApplicationMVC.EntitiFramework.Entities;
 using WebApplicationMVC.Services;
+using Serilog;
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
 
 var conection = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -15,6 +23,11 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(cone
 // Add services IdentityUser, IdentityRole
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -57,4 +70,11 @@ using (var scope = app.Services.CreateScope())
 
 
 
-app.Run();
+try
+{
+    app.Run();
+}
+finally
+{
+    Log.CloseAndFlush();
+}
